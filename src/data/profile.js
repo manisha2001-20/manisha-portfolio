@@ -85,8 +85,8 @@ export const projects = [
     summary: 'Framework and dashboard that measure gender and demographic bias in LLMs and vision-language models, and the fairness of any classifier’s predictions.',
     highlights: [
       'Winogender-style coreference, BOLD-style generation and FairFace vision evaluations with bootstrap CIs and permutation tests',
-      'Runs Qwen2.5 and DeepSeek-R1 locally via Ollama; Qwen2.5-VL and SmolVLM adapters for vision',
-      'Prompt-based bias mitigation with before/after comparison runs; fairness metrics (demographic parity, disparate impact, equalized odds)',
+      'Evaluated 4 real models locally: Qwen2.5-3B and DeepSeek-R1 (text), Qwen2.5-VL-3B and SmolVLM-256M on FairFace images (vision)',
+      'Measured prompt-based mitigation (Qwen2.5-3B coreference bias score 30.0 → 16.7); fairness metrics (demographic parity, disparate impact, equalized odds)',
     ],
     tech: ['Python', 'Qwen', 'DeepSeek', 'Qwen2.5-VL', 'SmolVLM', 'Streamlit', 'Plotly'],
     repo: `${GH}/bias-fairness-evaluation`,

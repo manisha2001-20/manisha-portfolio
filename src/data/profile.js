@@ -65,7 +65,7 @@ export const projects = [
   {
     id: 'news',
     title: 'Personalized AI News Digest Agent',
-    badge: 'Resume project',
+    badge: 'AI agent project',
     categories: ['LLM & GenAI', 'Full-Stack'],
     summary: 'Multi-agent system that collects RSS and YouTube channel feeds, summarises articles with an LLM, ranks them by interest and builds personalised email digests.',
     highlights: [
@@ -80,7 +80,7 @@ export const projects = [
   {
     id: 'bias',
     title: 'Bias Detection & Fairness Evaluation Framework',
-    badge: 'Resume project',
+    badge: 'AI/ML project',
     categories: ['LLM & GenAI', 'Data Science & ML'],
     summary: 'Framework and dashboard that measure gender and demographic bias in LLMs and vision-language models, and the fairness of any classifier’s predictions.',
     highlights: [
@@ -95,7 +95,7 @@ export const projects = [
   {
     id: 'learnnet',
     title: 'LearnNet Analyzer: YouTube Educator Network Study',
-    badge: 'Resume project',
+    badge: 'Minor project',
     categories: ['Data Science & ML', 'Full-Stack'],
     summary: 'NLP system that turns YouTube educational transcripts into a concept network, generates beginner-to-advanced learning paths and scores educators’ pedagogical influence.',
     highlights: [
@@ -110,7 +110,7 @@ export const projects = [
   {
     id: 'fraud',
     title: 'Fraud Detection in Financial Transactions',
-    badge: 'Resume project',
+    badge: 'Machine learning project',
     categories: ['Data Science & ML'],
     summary: 'Three-stage fraud detection pipeline combining data analysis and machine learning to flag suspicious transactions, with an interactive dashboard.',
     highlights: [
@@ -126,7 +126,7 @@ export const projects = [
     id: 'canteen',
     initials: 'SC',
     title: 'Smart Canteen Management System',
-    badge: 'Agentic AI',
+    badge: 'Agentic AI project',
     categories: ['LLM & GenAI', 'Full-Stack'],
     summary: 'Agentic AI-based canteen token system: students order from their phone or laptop, get a digital token with an estimated ready time and track preparation live.',
     highlights: [

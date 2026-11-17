@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body { @apply bg-ink-900 text-slate-300 font-sans antialiased; }
+  ::selection { @apply bg-violet-500/40 text-white; }
+  h1, h2, h3 { @apply font-display text-white; }
+  :focus-visible { @apply outline-none ring-2 ring-violet-400 ring-offset-2 ring-offset-ink-900 rounded-md; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8; }
+  .section { @apply py-20 sm:py-28; }
+  .eyebrow { @apply inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-violet-300; }
+  .heading { @apply mt-4 text-3xl font-bold tracking-tight sm:text-4xl; }
+  .gradient-text { @apply bg-gradient-to-r from-violet-400 via-indigo-300 to-sky-400 bg-clip-text text-transparent; background-size: 200% auto; }
+  .glass { @apply rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition duration-200 active:scale-[0.98]; }
+  .btn-primary { @apply btn bg-gradient-to-r from-violet-600 to-blue-600 text-white shadow-lg shadow-violet-900/40 hover:from-violet-500 hover:to-blue-500 hover:shadow-violet-700/40; }
+  .btn-ghost { @apply btn border border-white/10 bg-white/[0.04] text-slate-200 hover:border-violet-400/40 hover:bg-white/[0.08] hover:text-white; }
+  .chip { @apply rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-medium text-slate-300; }
+}
+
+/* scroll reveal */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* subtle grid backdrop */
+.grid-bg {
+  background-image: linear-gradient(rgba(139,124,246,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(139,124,246,.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 75%);
+}

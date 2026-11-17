@@ -142,7 +142,7 @@ export const projects = [
     id: 'electricity',
     initials: 'EB',
     title: 'Electricity Bill Calculator using PyTest',
-    badge: 'Software testing',
+    badge: 'Testing project',
     categories: ['Testing'],
     summary: 'Slab-based electricity bill calculator with a Streamlit dashboard, verified by an automated PyTest suite using positive, negative and boundary-value testing.',
     highlights: [

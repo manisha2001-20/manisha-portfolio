@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { certifications, education, profile, skills } from '../data/profile.js'
-import { AwardIcon, CapIcon, CopyIcon, GitHubIcon, LinkedInIcon, MailIcon } from './Icons.jsx'
+import { AwardIcon, CapIcon, CopyIcon, ExternalIcon, GitHubIcon, LinkedInIcon, MailIcon } from './Icons.jsx'
 
 export function SectionHeader({ eyebrow, title, children }) {
   return (
@@ -28,6 +28,9 @@ export function About() {
         <div className="grid gap-8 lg:grid-cols-5">
           <div className="reveal space-y-5 text-base leading-relaxed text-slate-400 lg:col-span-3">
             {profile.about.map((p) => <p key={p.slice(0, 20)}>{p}</p>)}
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="btn-primary"><LinkedInIcon width={18} height={18} /> Connect on LinkedIn</a>
+            </div>
           </div>
           <dl className="reveal glass divide-y divide-white/[0.06] p-2 lg:col-span-2">
             {facts.map(([k, v]) => (
@@ -98,20 +101,52 @@ export function Education() {
   )
 }
 
+const linkCls = 'inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-slate-200 transition hover:border-violet-400/40 hover:bg-white/[0.08] hover:text-white'
+
+export function certificateLinks(c, base = '/') {
+  const links = []
+  if (c.linkedinCredentialUrl) links.push({ href: c.linkedinCredentialUrl, label: 'View credential on LinkedIn', linkedin: true })
+  if (c.certificateFile) links.push({ href: `${base}${c.certificateFile}`, label: 'View certificate' })
+  if (c.issuerUrl) links.push({ href: c.issuerUrl, label: `Issuer copy (${c.issuer.split(' ')[0]})` })
+  return links
+}
+
 export function Certifications() {
   return (
     <section id="certifications" className="section">
       <div className="container-x">
-        <SectionHeader eyebrow="Certifications" title="Credentials & simulations" />
+        <SectionHeader eyebrow="Certifications" title="Credentials & simulations">
+          Open each certificate to inspect the original document.
+        </SectionHeader>
         <div className="grid gap-4 md:grid-cols-3">
-          {certifications.map((c, i) => (
-            <article key={c.title} className="reveal glass group p-6 transition duration-300 hover:-translate-y-1 hover:border-blue-400/30" style={{ transitionDelay: `${i * 80}ms` }}>
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-blue-500/15 text-blue-300 ring-1 ring-blue-400/20 transition group-hover:rotate-6"><AwardIcon width={22} height={22} /></span>
-              <h3 className="mt-5 text-base font-semibold leading-snug">{c.title}</h3>
-              <p className="mt-2 text-sm text-slate-400">{c.issuer}</p>
-              {c.date && <p className="mt-1 text-xs font-medium text-violet-300">{c.date}</p>}
-            </article>
-          ))}
+          {certifications.map((c, i) => {
+            const links = certificateLinks(c, import.meta.env.BASE_URL)
+            return (
+              <article key={c.title} className="reveal glass group flex flex-col p-6 transition duration-300 hover:-translate-y-1 hover:border-blue-400/30" style={{ transitionDelay: `${i * 80}ms` }}>
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-blue-500/15 text-blue-300 ring-1 ring-blue-400/20 transition group-hover:rotate-6"><AwardIcon width={22} height={22} /></span>
+                <h3 className="mt-5 text-base font-semibold leading-snug">{c.title}</h3>
+                <p className="mt-2 text-sm text-slate-400">{c.issuer}</p>
+                <dl className="mt-3 space-y-1 text-xs">
+                  {c.date && (
+                    <div className="flex gap-1.5"><dt className="text-slate-500">Completed:</dt><dd className="font-medium text-violet-300">{c.date}</dd></div>
+                  )}
+                  {c.credentialId && (
+                    <div className="flex flex-wrap gap-1.5"><dt className="text-slate-500">Credential ID:</dt><dd className="break-all font-mono text-slate-300">{c.credentialId}</dd></div>
+                  )}
+                </dl>
+                <div className="mt-auto flex flex-wrap gap-2 pt-5">
+                  {links.length ? links.map((l) => (
+                    <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className={linkCls}>
+                      {l.linkedin ? <LinkedInIcon width={14} height={14} /> : <ExternalIcon width={14} height={14} />} {l.label}
+                    </a>
+                  )) : <p className="text-xs italic text-slate-500">Certificate document available on request</p>}
+                </div>
+              </article>
+            )
+          })}
+        </div>
+        <div className="reveal mt-8 text-center">
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="btn-ghost"><LinkedInIcon width={18} height={18} /> See my LinkedIn profile</a>
         </div>
       </div>
     </section>
@@ -142,7 +177,7 @@ export function Contact({ resumeAvailable }) {
             <button onClick={copy} className="btn-ghost" aria-live="polite"><CopyIcon width={18} height={18} /> {copied ? 'Copied!' : 'Copy email'}</button>
           </div>
           <div className="relative mt-4 flex flex-wrap justify-center gap-3">
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="btn-ghost"><LinkedInIcon width={18} height={18} /> LinkedIn</a>
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="btn-ghost"><LinkedInIcon width={18} height={18} className="text-[#4f9be6]" /> LinkedIn profile</a>
             <a href={profile.github} target="_blank" rel="noreferrer" className="btn-ghost"><GitHubIcon width={18} height={18} /> GitHub</a>
             {resumeAvailable && <a href={`${import.meta.env.BASE_URL}${profile.resumeFile}`} download="S_Manisha_Rani_Patra_Resume.pdf" className="btn-ghost">Download resume</a>}
           </div>

@@ -168,10 +168,40 @@ export const education = [
   },
 ]
 
+// Every value below is copied from the original certificate PDF. Leave a field null when the
+// certificate does not state it — never fill in IDs, dates or links that do not exist.
+//   certificateFile        → PDF in public/certificates/ (the original certificate)
+//   issuerUrl              → copy of the certificate hosted by the issuer itself
+//   linkedinCredentialUrl  → paste the "Show credential" URL from LinkedIn once the certificate is added there
 export const certifications = [
-  { title: 'Nutanix Hybrid Cloud Fundamentals (NHCF) Online', issuer: 'Nutanix University', date: 'March 2026' },
-  { title: 'Deloitte Data Analytics Job Simulation', issuer: 'Forage', date: null },
-  { title: 'EY Technology Risk Virtual Job Simulation', issuer: 'Forage', date: null },
+  {
+    title: 'Nutanix Hybrid Cloud Fundamentals (NHCF) Online',
+    issuer: 'Nutanix University',
+    date: 'March 22, 2026',
+    credentialId: null, // not printed on the certificate
+    certificateFile: 'certificates/nutanix-hybrid-cloud-fundamentals.pdf',
+    issuerUrl: null,
+    linkedinCredentialUrl: null,
+  },
+  {
+    title: 'EY Technology Risk Virtual Job Simulation',
+    issuer: 'Forage (EY program)',
+    date: 'August 29, 2026',
+    credentialId: '6a8ff880019f2058ac63d693', // "User Verification Code" printed on the certificate
+    certificateFile: 'certificates/ey-technology-risk-job-simulation.pdf',
+    // Forage's own hosted copy (byte-identical to the downloaded PDF)
+    issuerUrl: 'https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Z3pPDqCPapFTSGBgi/25RAqjzJnD3b8YPZv_Z3pPDqCPapFTSGBgi_6a8ff880019f2058ac63d693_1787988365310_completion_certificate.pdf',
+    linkedinCredentialUrl: null,
+  },
+  {
+    title: 'Deloitte Data Analytics Job Simulation',
+    issuer: 'Forage (Deloitte program)',
+    date: null,
+    credentialId: null,
+    certificateFile: null, // add public/certificates/<file>.pdf here when available
+    issuerUrl: null,
+    linkedinCredentialUrl: null,
+  },
 ]
 
 export const nav = [

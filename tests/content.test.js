@@ -39,6 +39,28 @@ describe('portfolio content', () => {
     expect(profile.github).toBe('https://github.com/manisha2001-20')
   })
 
+  it('links certificates only to real documents, never inventing credentials', () => {
+    for (const c of certifications) {
+      expect(c.title && c.issuer, c.title).toBeTruthy()
+      if (c.certificateFile) {
+        expect(c.certificateFile).toMatch(/^certificates\/[\w-]+\.pdf$/)
+        const pdf = readFileSync(join('public', c.certificateFile))
+        expect(pdf.subarray(0, 5).toString(), c.certificateFile).toBe('%PDF-')
+      }
+      if (c.linkedinCredentialUrl) expect(c.linkedinCredentialUrl).toMatch(/^https:\/\/(www\.)?linkedin\.com\//)
+      if (c.issuerUrl) expect(c.issuerUrl).toMatch(/^https:\/\//)
+      if (c.credentialId) expect(c.certificateFile || c.issuerUrl, c.title).toBeTruthy() // an ID must be backed by a document
+    }
+    for (const [file, text] of sources) expect(text, file).not.toMatch(/\bverified (certificate|credential)/i)
+  })
+
+  it('opens every LinkedIn link in a new tab', () => {
+    const jsx = sources.filter(([f]) => f.endsWith('.jsx')).map(([, t]) => t).join('\n')
+    const tags = jsx.match(/<a [^>]*linkedin[^>]*>/gi) ?? []
+    expect(tags.length).toBeGreaterThanOrEqual(4)
+    for (const t of tags) expect(t).toContain('target="_blank"')
+  })
+
   it('matches resume facts', () => {
     expect(education[0].detail).toContain('7.38')
     expect(education[0].period).toBe('2023 – 2027')

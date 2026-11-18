@@ -28,10 +28,10 @@ export default function Hero({ resumeAvailable }) {
               <a href={`${import.meta.env.BASE_URL}${profile.resumeFile}`} download="S_Manisha_Rani_Patra_Resume.pdf" className="btn-ghost"><DownloadIcon width={18} height={18} /> Download resume</a>
             )}
             <a href={`mailto:${profile.email}`} className="btn-ghost"><MailIcon width={18} height={18} /> Email me</a>
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="btn-ghost"><LinkedInIcon width={18} height={18} className="text-[#4f9be6]" /> Connect on LinkedIn</a>
           </div>
           <div className="reveal mt-6 flex justify-center gap-2">
             <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="rounded-xl border border-white/10 p-3 text-slate-300 transition hover:-translate-y-0.5 hover:border-violet-400/50 hover:text-white"><GitHubIcon /></a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="rounded-xl border border-white/10 p-3 text-slate-300 transition hover:-translate-y-0.5 hover:border-blue-400/50 hover:text-white"><LinkedInIcon /></a>
           </div>
         </div>
 

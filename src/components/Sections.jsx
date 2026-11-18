@@ -20,6 +20,7 @@ export function About() {
     ['Graduation', '2027'],
     ['CGPA', '7.38 / 10'],
     ['Email', profile.email],
+    ['LinkedIn', <a key="li" href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-white hover:underline">s-manisha-rani-patra</a>],
   ]
   return (
     <section id="about" className="section">
@@ -29,7 +30,7 @@ export function About() {
           <div className="reveal space-y-5 text-base leading-relaxed text-slate-400 lg:col-span-3">
             {profile.about.map((p) => <p key={p.slice(0, 20)}>{p}</p>)}
             <div className="flex flex-wrap gap-3 pt-2">
-              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="btn-primary"><LinkedInIcon width={18} height={18} /> Connect on LinkedIn</a>
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="btn-primary"><LinkedInIcon width={18} height={18} /> Let’s connect</a>
             </div>
           </div>
           <dl className="reveal glass divide-y divide-white/[0.06] p-2 lg:col-span-2">
@@ -180,7 +181,7 @@ export function Contact({ resumeAvailable }) {
             <button onClick={copy} className="btn-ghost" aria-live="polite"><CopyIcon width={18} height={18} /> {copied ? 'Copied!' : 'Copy email'}</button>
           </div>
           <div className="relative mt-4 flex flex-wrap justify-center gap-3">
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="btn-ghost"><LinkedInIcon width={18} height={18} className="text-[#4f9be6]" /> LinkedIn profile</a>
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="btn-ghost"><LinkedInIcon width={18} height={18} className="text-[#4f9be6]" /> Connect with me on LinkedIn</a>
             <a href={profile.github} target="_blank" rel="noreferrer" className="btn-ghost"><GitHubIcon width={18} height={18} /> GitHub</a>
             {resumeAvailable && <a href={`${import.meta.env.BASE_URL}${profile.resumeFile}`} download="S_Manisha_Rani_Patra_Resume.pdf" className="btn-ghost">Download resume</a>}
           </div>

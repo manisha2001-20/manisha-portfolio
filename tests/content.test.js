@@ -63,6 +63,27 @@ describe('portfolio content', () => {
     for (const t of tags) expect(t).toContain('target="_blank"')
   })
 
+  it('points every LinkedIn profile link at the exact profile, with one per section', () => {
+    // no hard-coded LinkedIn URLs in components: every profile link goes through profile.linkedin
+    for (const [file, text] of sources.filter(([f]) => f.endsWith('.jsx'))) {
+      expect(text, file).not.toMatch(/linkedin\.com\/in\//)
+    }
+    const read = (f) => readFileSync(`src/components/${f}`, 'utf8')
+    const count = (text) => (text.match(/href=\{profile\.linkedin\}/g) ?? []).length
+    expect(count(read('Navbar.jsx'))).toBe(2) // desktop bar + mobile menu
+    expect(count(read('Hero.jsx'))).toBe(1)
+    expect(count(read('Sections.jsx'))).toBe(5) // about row + button, certifications, contact, footer
+  })
+
+  it('builds LinkedIn share links from each project repository', async () => {
+    const { linkedinShareUrl } = await import('../src/components/Projects.jsx')
+    for (const p of projects) {
+      const u = new URL(linkedinShareUrl(p.repo))
+      expect(u.origin + u.pathname).toBe('https://www.linkedin.com/sharing/share-offsite/')
+      expect(u.searchParams.get('url')).toBe(p.repo)
+    }
+  })
+
   it('matches resume facts', () => {
     expect(education[0].detail).toContain('7.38')
     expect(education[0].period).toBe('2023 – 2027')

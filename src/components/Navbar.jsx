@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { nav, profile } from '../data/profile.js'
 import { useActiveSection } from '../hooks.js'
-import { CloseIcon, GitHubIcon, MenuIcon } from './Icons.jsx'
+import { CloseIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './Icons.jsx'
 
 const IDS = nav.map((n) => n.id)
 
@@ -42,6 +42,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2">
           <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub profile" className="hidden rounded-lg p-2 text-slate-400 transition hover:bg-white/5 hover:text-white sm:inline-flex"><GitHubIcon /></a>
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="hidden items-center gap-1.5 rounded-lg p-2 text-sm font-medium text-slate-400 transition hover:bg-white/5 hover:text-white sm:inline-flex"><LinkedInIcon /><span className="hidden xl:inline">LinkedIn</span></a>
           <a href="#contact" className="btn-primary hidden !px-4 !py-2 sm:inline-flex">Let’s talk</a>
           <button className="rounded-lg p-2 text-slate-200 hover:bg-white/5 lg:hidden" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
             {open ? <CloseIcon /> : <MenuIcon />}
@@ -56,6 +57,9 @@ export default function Navbar() {
               <a href={`#${n.id}`} onClick={() => setOpen(false)} className={`block rounded-xl px-4 py-3 text-lg font-medium ${active === n.id ? 'bg-white/[0.06] text-white' : 'text-slate-300'}`}>{n.label}</a>
             </li>
           ))}
+          <li className="mt-2 border-t border-white/[0.06] pt-3">
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-4 py-3 text-lg font-medium text-slate-300"><LinkedInIcon className="text-[#4f9be6]" /> LinkedIn</a>
+          </li>
         </ul>
       </div>
     </header>

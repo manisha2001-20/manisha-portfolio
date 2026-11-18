@@ -37,7 +37,10 @@ with sync_playwright() as p:
         if name != "desktop":  # tablet + mobile use the hamburger menu (lg breakpoint)
             pg.click("button[aria-label='Open menu']")
             pg.locator("header a[href='#projects']:visible").first.click()
-            pg.wait_for_timeout(900)
+            try:  # wait for the smooth scroll to settle instead of a fixed delay
+                pg.wait_for_function("Math.abs(document.getElementById('projects').getBoundingClientRect().top) < 120", timeout=3000)
+            except Exception:
+                pass
             check(pg.evaluate("Math.abs(document.getElementById('projects').getBoundingClientRect().top) < 120"), f"[{name}] menu link scrolls to Projects")
         else:
             for s in SECTIONS[1:]:

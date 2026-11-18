@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { categories, profile, projects } from '../data/profile.js'
-import { ArrowIcon, CloseIcon, ExternalIcon, GitHubIcon } from './Icons.jsx'
+import { ArrowIcon, CloseIcon, ExternalIcon, GitHubIcon, LinkedInIcon } from './Icons.jsx'
 import { SectionHeader } from './Sections.jsx'
 
 function TiltCard({ children, onClick, label }) {
@@ -48,6 +48,9 @@ function Cover({ project }) {
   )
 }
 
+/** LinkedIn's share dialog, pre-filled with the project's GitHub repository. */
+export const linkedinShareUrl = (repo) => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(repo)}`
+
 function ProjectModal({ project, onClose }) {
   const closeRef = useRef(null)
   useEffect(() => {
@@ -81,6 +84,7 @@ function ProjectModal({ project, onClose }) {
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={project.repo} target="_blank" rel="noreferrer" className="btn-primary"><GitHubIcon width={18} height={18} /> View on GitHub</a>
             <a href={`${project.repo}#readme`} target="_blank" rel="noreferrer" className="btn-ghost">Read the docs <ExternalIcon width={16} height={16} /></a>
+            <a href={linkedinShareUrl(project.repo)} target="_blank" rel="noopener noreferrer" className="btn-ghost"><LinkedInIcon width={16} height={16} className="text-[#4f9be6]" /> Discuss this project on LinkedIn</a>
           </div>
         </div>
       </div>

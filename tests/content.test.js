@@ -18,7 +18,7 @@ describe('portfolio content', () => {
     for (const [file, text] of sources) {
       expect(text, file).not.toMatch(/bmsce\.ac\.in/i)       // no college email anywhere
       expect(text, file).not.toMatch(/S\. Manisha/)           // no dot after S
-      expect(text, file).not.toMatch(/7008412421/)             // no phone number
+      expect(text, file).not.toMatch(/(\+91[\s-]?)?\b[6-9]\d{9}\b/) // no Indian mobile number
     }
   })
 

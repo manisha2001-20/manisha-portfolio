@@ -196,10 +196,14 @@ export const certifications = [
   {
     title: 'Deloitte Data Analytics Job Simulation',
     issuer: 'Forage (Deloitte program)',
-    date: null,
-    credentialId: null,
-    certificateFile: null, // add public/certificates/<file>.pdf here when available
-    issuerUrl: null,
+    date: 'August 27, 2026',
+    // "User Verification Code" printed on the certificate. Forage issues one per account,
+    // so it is the same on every Forage certificate (including the EY one) by design.
+    credentialId: '6a8ff880019f2058ac63d693',
+    enrolmentCode: '6a8ffa23019f2058ac641e1b', // "Enrolment Verification Code" — unique to this certificate
+    certificateFile: 'certificates/deloitte-data-analytics-job-simulation.pdf',
+    // Forage's certificate viewer page; its PDF (?raw=1) is byte-identical to the local copy
+    issuerUrl: 'https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_6a8ff880019f2058ac63d693_1787821696024_completion_certificate.pdf',
     linkedinCredentialUrl: null,
   },
 ]

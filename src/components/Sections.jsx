@@ -133,13 +133,16 @@ export function Certifications() {
                   {c.credentialId && (
                     <div className="flex flex-wrap gap-1.5"><dt className="text-slate-500">Credential ID:</dt><dd className="break-all font-mono text-slate-300">{c.credentialId}</dd></div>
                   )}
+                  {c.enrolmentCode && (
+                    <div className="flex flex-wrap gap-1.5"><dt className="text-slate-500">Enrolment code:</dt><dd className="break-all font-mono text-slate-300">{c.enrolmentCode}</dd></div>
+                  )}
                 </dl>
                 <div className="mt-auto flex flex-wrap gap-2 pt-5">
                   {links.length ? links.map((l) => (
                     <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className={linkCls}>
                       {l.linkedin ? <LinkedInIcon width={14} height={14} /> : <ExternalIcon width={14} height={14} />} {l.label}
                     </a>
-                  )) : <p className="text-xs italic text-slate-500">Certificate document available on request</p>}
+                  )) : null}
                 </div>
               </article>
             )

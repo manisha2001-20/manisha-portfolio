@@ -52,6 +52,8 @@ describe('portfolio content', () => {
       if (c.credentialId) expect(c.certificateFile || c.issuerUrl, c.title).toBeTruthy() // an ID must be backed by a document
     }
     for (const [file, text] of sources) expect(text, file).not.toMatch(/\bverified (certificate|credential)/i)
+    for (const c of certifications) expect(c.certificateFile, `${c.title} has its original PDF`).toBeTruthy()
+    for (const [file, text] of sources) expect(text, file).not.toMatch(/available on request/i)
   })
 
   it('opens every LinkedIn link in a new tab', () => {
